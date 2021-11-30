@@ -10,7 +10,7 @@ compoeGradeDoCurso("Computacao", "Redes de Computadores").
 compoeGradeDoCurso("Computacao", "Estrutura de Dados").
 compoeGradeDoCurso("Computacao", "Estrutura de Dados II").
 compoeGradeDoCurso("Computacao", "Teoria dos Compiladores").
-compoeGradeDoCurso("Computacao", "Linguagens Formais e Automatos").
+compoeGradeDoCurso("Computacao", "LFA").
 compoeGradeDoCurso("Computacao", "Teoria da Computacao").
 compoeGradeDoCurso("Computacao", "Laboratorio de Fisica").
 
@@ -23,7 +23,7 @@ compoeGradeDoCurso("SI", "Dispositivos Moveis").
 compoeGradeDoCurso("SI", "Empreendimentos em Informatica").
 compoeGradeDoCurso("SI", "Teste de Software").
 compoeGradeDoCurso("SI", "Introducao a SI").
-compoeGradeDoCurso("SI", "Estrutura de Dados II").
+compoeGradeDoCurso("SI", "Estrutura de Dados").
 compoeGradeDoCurso("SI", "Teoria dos Grafos").
 
 
@@ -141,9 +141,14 @@ alunoCursouDisciplina("Cecilia", "Algebra Linear", 100).
 alunoCursouDisciplina("Isabela", "Calculo III",  100).
 alunoCursouDisciplina("Isabela", "Algebra Linear", 100).
 
-
-matrizCurricular(X, Z) :- compoeGradeDoCurso(X, Z).
+%Consultas
 historicoAluno(X, Z, Y) :- alunoCursouDisciplina(X, Z, Y).
+matrizCurricular(X, Z) :- compoeGradeDoCurso(X, Z).
 alunosQueCursaramDisciplinaComFiltroNota(X, Z, Y) :- alunoCursouDisciplina(Z, X, Y).
+disciplinasFaltantesParaAluno(X, Z) :-
+    aluno(X, C, _),
+    findall(D, compoeGradeDoCurso(C, D), R),
+    findall(F, alunoCursouDisciplina(X, F, _), Q),
+    subtract(R, Q, Z).    
 estudantesDoCursoComFiltroIRA(X, Z, Y) :- aluno(Z, X, Y).
 cursosQueContemDisciplina(X, Z) :- compoeGradeDoCurso(Z, X).
