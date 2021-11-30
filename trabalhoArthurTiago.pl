@@ -144,6 +144,6 @@ alunoCursouDisciplina("Isabela", "Algebra Linear", 100).
 
 matrizCurricular(X, Z) :- compoeGradeDoCurso(X, Z).
 historicoAluno(X, Z, Y) :- alunoCursouDisciplina(X, Z, Y).
-alunosQueCursaramDisciplinaComFiltroNota(X, Z, y) :- alunoCursouDisciplina(Z, X, y).
-estudantesDoCursoComFiltroIRA(X, Z, y) :- aluno(Z, X, y).
+alunosQueCursaramDisciplinaComFiltroNota(X, Z, Y) :- alunoCursouDisciplina(Z, X, Y).
+estudantesDoCursoComFiltroIRA(X, Z, Y) :- aluno(Z, X, Y).
 cursosQueContemDisciplina(X, Z) :- compoeGradeDoCurso(Z, X).
