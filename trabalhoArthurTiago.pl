@@ -86,16 +86,16 @@ alunoCursouDisciplina("Debora", "Sistemas Operacionais", 75).
 alunoCursouDisciplina("Debora", "Redes de Computadores", 62).
 alunoCursouDisciplina("Breno", "Algoritmos", 95).
 alunoCursouDisciplina("Breno", "Redes de Computadores", 87).
-alunoCursouDisciplina("Lorenzo", "LFA", 10).
-alunoCursouDisciplina("Lorenzo", "Redes de Computadores", 57).
-alunoCursouDisciplina("Heitor", "LFA", 10).
-alunoCursouDisciplina("Heitor", "Redes de Computadores", 57).
-alunoCursouDisciplina("Helena", "LFA", 10).
-alunoCursouDisciplina("Helena", "Redes de Computadores", 57).
-alunoCursouDisciplina("Alice", "LFA", 10).
-alunoCursouDisciplina("Alice", "Redes de Computadores", 57).
-alunoCursouDisciplina("Davi", "LFA", 10).
-alunoCursouDisciplina("Davi", "Redes de Computadores", 57).
+alunoCursouDisciplina("Lorenzo", "LFA", 80).
+alunoCursouDisciplina("Lorenzo", "Teoria dos Compiladores", 77).
+alunoCursouDisciplina("Heitor", "Algoritmos", 90).
+alunoCursouDisciplina("Heitor", "Sistemas Operacionais", 66).
+alunoCursouDisciplina("Helena", "Teoria da Computacao", 70).
+alunoCursouDisciplina("Helena", "Estrutura de Dados", 98).
+alunoCursouDisciplina("Alice", "LFA", 50).
+alunoCursouDisciplina("Alice", "Teoria dos Grafos", 90).
+alunoCursouDisciplina("Davi", "Estrutura de Dados II", 40).
+alunoCursouDisciplina("Davi", "Redes de Computadore", 84).
 
 %Disciplinas cursadas alunos SI
 alunoCursouDisciplina("Arthur", "Algoritmos", 70).
@@ -108,16 +108,16 @@ alunoCursouDisciplina("Carlos", "Sistemas Operacionais", 60).
 alunoCursouDisciplina("Carlos", "Bando de Dados", 60).
 alunoCursouDisciplina("Diogo", "Algoritmos",  80).
 alunoCursouDisciplina("Diogo", "Teste de Software", 88).
-alunoCursouDisciplina("Laura", "Algoritmos",  80).
-alunoCursouDisciplina("Laura", "Teste de Software", 88).
-alunoCursouDisciplina("Gabriel", "Algoritmos",  80).
-alunoCursouDisciplina("Gabriel", "Teste de Software", 88).
-alunoCursouDisciplina("Roberto", "Algoritmos",  80).
-alunoCursouDisciplina("Roberto", "Teste de Software", 88).
-alunoCursouDisciplina("Bernardo", "Algoritmos",  80).
-alunoCursouDisciplina("Bernardo", "Teste de Software", 88).
-alunoCursouDisciplina("Pedro", "Algoritmos",  80).
-alunoCursouDisciplina("Pedro", "Teste de Software", 88).
+alunoCursouDisciplina("Laura", "Dispositivos Moveis",  70).
+alunoCursouDisciplina("Laura", "Teoria dos Grafos", 68).
+alunoCursouDisciplina("Gabriel", "Empreendimentos em Informatica",  62).
+alunoCursouDisciplina("Gabriel", "Teste de Software", 97).
+alunoCursouDisciplina("Roberto", "Banco de Dados",  80).
+alunoCursouDisciplina("Roberto", "Sistemas Operacionais", 78).
+alunoCursouDisciplina("Bernardo", "Estrutura de Dados",  72).
+alunoCursouDisciplina("Bernardo", "Introducao a SI", 91).
+alunoCursouDisciplina("Pedro", "Gerencia de Projetos",  65).
+alunoCursouDisciplina("Pedro", "Teste de Software", 77).
 
 %Disciplinas cursadas alunos Matematica
 alunoCursouDisciplina("Lucas", "Calculo I", 60).
@@ -129,17 +129,17 @@ alunoCursouDisciplina("Amanda", "Algebra Linear", 80).
 alunoCursouDisciplina("Beatriz", "EDO", 67).
 alunoCursouDisciplina("Beatriz", "Calculo I", 90).
 alunoCursouDisciplina("Casimiro", "Calculo III",  100).
-alunoCursouDisciplina("Casimiro", "Algebra Linear", 100).
-alunoCursouDisciplina("Miguel", "Calculo III",  100).
-alunoCursouDisciplina("Miguel", "Algebra Linear", 100).
-alunoCursouDisciplina("Lorena", "Calculo III",  100).
-alunoCursouDisciplina("Lorena", "Algebra Linear", 100).
-alunoCursouDisciplina("Manuela", "Calculo III",  100).
-alunoCursouDisciplina("Manuela", "Algebra Linear", 100).
-alunoCursouDisciplina("Cecilia", "Calculo III",  100).
-alunoCursouDisciplina("Cecilia", "Algebra Linear", 100).
-alunoCursouDisciplina("Isabela", "Calculo III",  100).
-alunoCursouDisciplina("Isabela", "Algebra Linear", 100).
+alunoCursouDisciplina("Casimiro", "Algebra Linear", 99).
+alunoCursouDisciplina("Miguel", "Algoritmos",  80).
+alunoCursouDisciplina("Miguel", "Analise Real", 72).
+alunoCursouDisciplina("Lorena", "Fisica I",  60).
+alunoCursouDisciplina("Lorena", "EDO", 51).
+alunoCursouDisciplina("Manuela", "Calculo II",  42).
+alunoCursouDisciplina("Manuela", "Fundamentos de Matematica", 86).
+alunoCursouDisciplina("Cecilia", "Calculo I",  67).
+alunoCursouDisciplina("Cecilia", "Algebra Linear", 71).
+alunoCursouDisciplina("Isabela", "Laboratorio de Fisica",  65).
+alunoCursouDisciplina("Isabela", "Fundamentos de Matematica", 34).
 
 %Consultas
 historicoAluno(X, Z, Y) :- alunoCursouDisciplina(X, Z, Y).
