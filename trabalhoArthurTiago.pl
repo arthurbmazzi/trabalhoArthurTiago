@@ -185,8 +185,11 @@ editarAlunoCursouDisciplina(X, A, B, C) :-
 
 %Salvar
 salvar :-
-    tell('trabalhoArthurTiago.pl'),
+    tell('bancoDeDados.txt'),
     listing(aluno),
     listing(compoeGradeDoCurso),
     listing(alunoCursouDisciplina),
     told.
+
+%Carregamento de dados inicial
+load :- exists_file('bancoDeDados.txt'), consult('bancoDeDados.txt').
