@@ -147,15 +147,15 @@ alunoCursouDisciplina("Isabela", "Fundamentos de Matematica", 34).
 
 %Consultas
 historicoAluno(X, Z, Y) :- alunoCursouDisciplina(X, Z, Y).
-matrizCurricular(X, Z) :- compoeGradeDoCurso(X, Z).
-alunosQueCursaramDisciplinaComFiltroNota(X, Z, Y) :- alunoCursouDisciplina(Z, X, Y).
+matrizCurricular(X, Y) :- compoeGradeDoCurso(X, Y).
+alunosQueCursaramDisciplinaComFiltroNota(X, Y, Z) :- alunoCursouDisciplina(X, Y, B), B >= Z.
 disciplinasFaltantesParaAluno(X, Z) :-
     aluno(X, C, _),
     findall(D, compoeGradeDoCurso(C, D), R),
     findall(F, alunoCursouDisciplina(X, F, _), Q),
     subtract(R, Q, Z).
-estudantesDoCursoComFiltroIRA(X, Z, Y) :- aluno(Z, X, Y).
-cursosQueContemDisciplina(X, Z) :- compoeGradeDoCurso(Z, X).
+estudantesDoCursoComFiltroIRA(X, Y, Z) :- aluno(X, Y, B), B >= Z.
+cursosQueContemDisciplina(X, Z) :- compoeGradeDoCurso(X, Z).
 
 %Adicao
 cadastrarEstudanteCursoIRA(X, Y, Z) :- assertz(aluno(X,Y,Z)).
@@ -184,7 +184,7 @@ editarAlunoCursouDisciplina(X, A, B, C) :-
     assertz(alunoCursouDisciplina(A, B, C)).
 
 %Salvar
-salvar :- 
+salvar :-
     tell('trabalhoArthurTiago.pl'),
     listing(aluno),
     listing(compoeGradeDoCurso),
