@@ -2,6 +2,10 @@
 %Arthur Boechat Mazzi - 201765012C
 %Tiago Carvalho - 201665118C
 
+:-dynamic(compoeGradeDoCurso/2).
+:-dynamic(aluno/3).
+:-dynamic(alunoCursouDisciplina/3).
+
 %Grade de Ciencia da Computacao
 compoeGradeDoCurso("Computacao", "Algoritmos").
 compoeGradeDoCurso("Computacao", "Sistemas Operacionais").
@@ -149,6 +153,40 @@ disciplinasFaltantesParaAluno(X, Z) :-
     aluno(X, C, _),
     findall(D, compoeGradeDoCurso(C, D), R),
     findall(F, alunoCursouDisciplina(X, F, _), Q),
-    subtract(R, Q, Z).    
+    subtract(R, Q, Z).
 estudantesDoCursoComFiltroIRA(X, Z, Y) :- aluno(Z, X, Y).
 cursosQueContemDisciplina(X, Z) :- compoeGradeDoCurso(Z, X).
+
+%Adicao
+cadastrarEstudanteCursoIRA(X, Y, Z) :- assertz(aluno(X,Y,Z)).
+cadastrarCursoDisciplina(X, Y) :- assertz(compoeGradeDoCurso(X, Y)).
+cadastrarAlunoCursouDisciplinaNota(X, Y, Z) :- assertz(alunoCursouDisciplina(X, Y, Z)).
+
+%Remocao
+removeEstudante(X) :- retractall(aluno(X, _, _)).
+removeCurso(X) :- retractall(compoeGradeDoCurso(X, _)), retractall(aluno(_, X, _)).
+removeDisciplina(X) :- retractall(compoeGradeDoCurso(_, X)), retractall(alunoCursouDisciplina(_, X, _)).
+
+%Exclusao
+editarAlunoCursoIRA(X, A, B, C) :-
+    writeln("Digite o nome do aluno no primeiro parametro e os dados a serem alterados no restante"),
+    retract(aluno(X, _, _)),
+    assertz(aluno(A, B, C)).
+
+editarCursoDisciplina(X, A, B) :-
+    writeln("Digite o nome do curso no primeiro parametro e os dados a serem alterados no restante"),
+    retract(compoeGradeDoCurso(X, _)),
+    assertz(compoeGradeDoCurso(A, B)).
+
+editarAlunoCursouDisciplina(X, A, B, C) :-
+    writeln("Digite o nome do aluno no primeiro parametro e os dados a serem alterados no restante"),
+    retract(alunoCursouDisciplina(X, _, _)),
+    assertz(alunoCursouDisciplina(A, B, C)).
+
+%Salvar
+salvar :- 
+    tell('trabalhoArthurTiago.pl'),
+    listing(aluno),
+    listing(compoeGradeDoCurso),
+    listing(alunoCursouDisciplina),
+    told.
