@@ -6,6 +6,8 @@
 :-dynamic(aluno/3).
 :-dynamic(alunoCursouDisciplina/3).
 
+:- initialization(writeln("Digite o comando 'load.' para carregar os dados atualizados!")).
+
 %Grade de Ciencia da Computacao
 compoeGradeDoCurso("Computacao", "Algoritmos").
 compoeGradeDoCurso("Computacao", "Sistemas Operacionais").
