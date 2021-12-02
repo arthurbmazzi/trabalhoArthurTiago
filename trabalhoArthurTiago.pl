@@ -169,7 +169,7 @@ removeEstudante(X) :- retractall(aluno(X, _, _)).
 removeCurso(X) :- retractall(compoeGradeDoCurso(X, _)), retractall(aluno(_, X, _)).
 removeDisciplina(X) :- retractall(compoeGradeDoCurso(_, X)), retractall(alunoCursouDisciplina(_, X, _)).
 
-%Exclusao
+%Edicao
 editarAlunoCursoIRA(X, A, B, C) :-
     writeln("Digite o nome do aluno no primeiro parametro e os dados a serem alterados no restante"),
     retract(aluno(X, _, _)),
