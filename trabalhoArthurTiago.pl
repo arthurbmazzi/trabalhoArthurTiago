@@ -172,8 +172,8 @@ cadastrarAlunoCursouDisciplinaNota(X, Y, Z) :- assertz(alunoCursouDisciplina(X, 
 removeEstudante(X) :- retractall(aluno(X, _, _)),
     retractall(alunoCursouDisciplina(X, _, _)).
 
-removeCurso(X) :- retractall(compoeGradeDoCurso(X, )), retractall(aluno(, X, _)).
-removeDisciplina(X) :- retractall(compoeGradeDoCurso(, X)), retractall(alunoCursouDisciplina(, X, _)).
+removeCurso(X) :- retractall(compoeGradeDoCurso(X, _)), retractall(aluno(_, X, _)).
+removeDisciplina(X) :- retractall(compoeGradeDoCurso(_, X)), retractall(alunoCursouDisciplina(_, X, _)).
 
 %Edicao
 editarAlunoCursoIRA(X, A, B, C) :-
