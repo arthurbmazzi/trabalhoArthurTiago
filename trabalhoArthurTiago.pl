@@ -151,39 +151,42 @@ alunoCursouDisciplina("Isabela", "Fundamentos de Matematica", 34).
 historicoAlunoFiltroIRA(X, Z, Y) :- alunoCursouDisciplina(X, Z, Y).
 historicoAluno(X, Z) :- alunoCursouDisciplina(X, Z, _).
 matrizCurricular(X, Y) :- compoeGradeDoCurso(X, Y).
-alunosQueCursaramDisciplinaComFiltroNota(X, Y, Z) :- alunoCursouDisciplina(X, Y, B), B >= Z.
-alunosQueCursaramDisciplina(X, Y) :- alunoCursouDisciplina(X, Y, _).
+alunosQueCursaramDisciplinaComFiltroNota(X, Z, Y) :- alunoCursouDisciplina(Z, X, A), A > Y.
+alunosQueCursaramDisciplina(X, Y) :- alunoCursouDisciplina(Y, X, _).
 disciplinasFaltantesParaAluno(X, Z) :-
     aluno(X, C, _),
     findall(D, compoeGradeDoCurso(C, D), R),
     findall(F, alunoCursouDisciplina(X, F, _), Q),
     subtract(R, Q, Z).
 
-estudantesDoCursoComFiltroIRA(X, Y, Z) :- aluno(X, Y, B), B >= Z.
-estudantesDoCurso(X, Y) :- aluno(X, Y, _).
-cursosQueContemDisciplina(X, Z) :- compoeGradeDoCurso(X, Z).
+estudantesDoCursoComFiltroIRA(X, Y, Z) :- aluno(Y, X, B), B >= Z.
+estudantesDoCurso(X, Y) :- aluno(Y, X, _).
+cursosQueContemDisciplina(X, Z) :- compoeGradeDoCurso(Z, X).
 
 %Adicao
-cadastrarEstudanteCursoIRA(X, Y, Z) :- assertz(aluno(X,Y,Z)).
+cadastrarEstudanteCursoIRA(X, Y, Z) :- assertz(aluno(X, Y, Z)).
 cadastrarCursoDisciplina(X, Y) :- assertz(compoeGradeDoCurso(X, Y)).
 cadastrarAlunoCursouDisciplinaNota(X, Y, Z) :- assertz(alunoCursouDisciplina(X, Y, Z)).
 
 %Remocao
-removeEstudante(X) :- retractall(aluno(X, _, _)).
-removeCurso(X) :- retractall(compoeGradeDoCurso(X, _)), retractall(aluno(_, X, _)).
-removeDisciplina(X) :- retractall(compoeGradeDoCurso(_, X)), retractall(alunoCursouDisciplina(_, X, _)).
+removeEstudante(X) :- retractall(aluno(X, _, _)),
+    retractall(alunoCursouDisciplina(X, _, _)).
+
+removeCurso(X) :- retractall(compoeGradeDoCurso(X, )), retractall(aluno(, X, _)).
+removeDisciplina(X) :- retractall(compoeGradeDoCurso(, X)), retractall(alunoCursouDisciplina(, X, _)).
 
 %Edicao
 editarAlunoCursoIRA(X, A, B, C) :-
-    retract(aluno(X, _, _)),
+    retractall(aluno(X, _, _)),
+    retractall(alunoCursouDisciplina(X, _, _)),
     assertz(aluno(A, B, C)).
 
 editarCursoDisciplina(X, A, B) :-
-    retract(compoeGradeDoCurso(X, _)),
+    retractall(compoeGradeDoCurso(X, _)),
     assertz(compoeGradeDoCurso(A, B)).
 
 editarAlunoCursouDisciplina(X, A, B, C) :-
-    retract(alunoCursouDisciplina(X, _, _)),
+    retractall(alunoCursouDisciplina(X, _, _)),
     assertz(alunoCursouDisciplina(A, B, C)).
 
 %Salvar
@@ -199,12 +202,11 @@ load :- exists_file('bancoDeDados.txt'), consult('bancoDeDados.txt').
 
 %Ajuda
 help :-
-    writeln("\nDigite o comando 'load.' para carregar os dados atualizados!"),
     writeln("Digite o comando 'salvar.' para salvar suas alteracoes!\n"),
+    writeln("\nDigite o comando 'load.' para carregar os dados atualizados!"),
     writeln("Para editar algum dados, digite o dado principal como parametro e em seguida os novos dados"),
     writeln("\tExemplo: editarAlunoCursoIRA('NomeAntigo', 'NomeEditado', 'CursoEditado', 'IRAEditado')"),
     writeln("Para remover um dado, digite o comando remove correspondente"),
     writeln("\tExemplo: removeCurso('Fisica')"),
     writeln("Para cadastrar novos dados/relacionamentos digite o comando com os parametros"),
     writeln("\tExemplo: cadastrarEstudanteCursoIRA('Fulano', 'SI', 80)\n").
-
