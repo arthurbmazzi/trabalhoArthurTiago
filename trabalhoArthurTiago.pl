@@ -148,15 +148,19 @@ alunoCursouDisciplina("Isabela", "Laboratorio de Fisica",  65).
 alunoCursouDisciplina("Isabela", "Fundamentos de Matematica", 34).
 
 %Consultas
-historicoAluno(X, Z, Y) :- alunoCursouDisciplina(X, Z, Y).
+historicoAlunoFiltroIRA(X, Z, Y) :- alunoCursouDisciplina(X, Z, Y).
+historicoAluno(X, Z) :- alunoCursouDisciplina(X, Z, _).
 matrizCurricular(X, Y) :- compoeGradeDoCurso(X, Y).
 alunosQueCursaramDisciplinaComFiltroNota(X, Y, Z) :- alunoCursouDisciplina(X, Y, B), B >= Z.
+alunosQueCursaramDisciplina(X, Y) :- alunoCursouDisciplina(X, Y, _).
 disciplinasFaltantesParaAluno(X, Z) :-
     aluno(X, C, _),
     findall(D, compoeGradeDoCurso(C, D), R),
     findall(F, alunoCursouDisciplina(X, F, _), Q),
     subtract(R, Q, Z).
+
 estudantesDoCursoComFiltroIRA(X, Y, Z) :- aluno(X, Y, B), B >= Z.
+estudantesDoCurso(X, Y) :- aluno(X, Y, _).
 cursosQueContemDisciplina(X, Z) :- compoeGradeDoCurso(X, Z).
 
 %Adicao
@@ -171,17 +175,14 @@ removeDisciplina(X) :- retractall(compoeGradeDoCurso(_, X)), retractall(alunoCur
 
 %Edicao
 editarAlunoCursoIRA(X, A, B, C) :-
-    writeln("Digite o nome do aluno no primeiro parametro e os dados a serem alterados no restante"),
     retract(aluno(X, _, _)),
     assertz(aluno(A, B, C)).
 
 editarCursoDisciplina(X, A, B) :-
-    writeln("Digite o nome do curso no primeiro parametro e os dados a serem alterados no restante"),
     retract(compoeGradeDoCurso(X, _)),
     assertz(compoeGradeDoCurso(A, B)).
 
 editarAlunoCursouDisciplina(X, A, B, C) :-
-    writeln("Digite o nome do aluno no primeiro parametro e os dados a serem alterados no restante"),
     retract(alunoCursouDisciplina(X, _, _)),
     assertz(alunoCursouDisciplina(A, B, C)).
 
@@ -195,3 +196,15 @@ salvar :-
 
 %Carregamento de dados inicial
 load :- exists_file('bancoDeDados.txt'), consult('bancoDeDados.txt').
+
+%Ajuda
+help :-
+    writeln("\nDigite o comando 'load.' para carregar os dados atualizados!"),
+    writeln("Digite o comando 'salvar.' para salvar suas alteracoes!\n"),
+    writeln("Para editar algum dados, digite o dado principal como parametro e em seguida os novos dados"),
+    writeln("\tExemplo: editarAlunoCursoIRA('NomeAntigo', 'NomeEditado', 'CursoEditado', 'IRAEditado')"),
+    writeln("Para remover um dado, digite o comando remove correspondente"),
+    writeln("\tExemplo: removeCurso('Fisica')"),
+    writeln("Para cadastrar novos dados/relacionamentos digite o comando com os parametros"),
+    writeln("\tExemplo: cadastrarEstudanteCursoIRA('Fulano', 'SI', 80)\n").
+
